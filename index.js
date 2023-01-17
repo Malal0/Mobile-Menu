@@ -3,7 +3,7 @@ console.log(foodData);
 const menuitemsContainer = document.querySelector('#menu-items');
 
 menuitemsContainer.innerHTML = foodData.map(food => `
-    <div class='menu-item'>
+    <div class='menu-item container'>
         <p class="item-emoji">${food.emoji}</p>
         <div class="item-info">
             <h3 class="item-title">${food.title}</h3>

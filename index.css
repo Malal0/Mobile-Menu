@@ -38,10 +38,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: 1px solid #d2d2d2;
+    padding: 2em 0;
 }
 
 .item-emoji {
     font-size: 80px;
+    width: 3.5ch;
+    /* border: 1px solid red; */
+    margin-right: .25em;
 }
 
 .item-title {
@@ -54,21 +59,23 @@ body {
 }
 
 .item-price {
+    padding-top: 10px;
     font-size: 20px;
 }
 
 .increment-btn {
-    padding: 10px 12px;
+    padding: 10px 14px;
     border-radius: 50%;
     border: 1px solid #dedede;
     background: transparent;
+    margin-left: auto;
 }
 
 
 /* special classes */
 
 .container {
-    width: 100%;
+    width: calc(100% - 92px);
     margin: 0 46px;
 }
 
