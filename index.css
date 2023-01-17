@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Smythe', Arial;
+}
+
+.header {
+    background-image: url(./images/Burger.svg);
+    color: #fff;
+    background-position: center 65%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 30px 46px;
+}
+
+.header h1 {
+    margin-bottom: 19px;
+}
+
+.header h2 {
+    margin-bottom: 30px;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-emoji {
+    font-size: 80px;
+}
+
+.item-title {
+    font-size: 28px;
+}
+
+.item-ingredients {
+    font-size: 16px;
+    color: #8b8b8b;
+}
+
+.item-price {
+    font-size: 20px;
+}
+
+.increment-btn {
+    padding: 10px 12px;
+    border-radius: 50%;
+    border: 1px solid #dedede;
+    background: transparent;
+}
+
+
+/* special classes */
+
+.container {
+    width: 100%;
+    margin: 0 46px;
+}
+
+.hidden {
+    display: none;
+}

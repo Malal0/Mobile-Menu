@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css" />
+    <title>Mobile Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Smythe&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <h1>Jimmy's Diner</h1>
+        <h2>The best burgers and pizzas in town.</h2>
+    </header>
+    <section class="menu-items" id="menu-items">
+        <div class='menu-item'>
+            <p class="item-emoji">🍕</p>
+            <div class="item-info">
+                <h3 class="item-title">title: Pizza</h3>
+                <p class="item-ingredients">ingredients: pepperoni, mushrom, mozarella</p>
+                <p class="item-price">$14</p>
+            </div>
+            <button class="increment-btn">+</button>
+        </div>
+        <!-- menu item -->
+        <!-- menu item -->
+    </section>
+    <section>
+        <!-- order details -->
+        <h2>Your order</h2>
+        <div>
+            <h2>Title</h2>
+            <button>remove</button>
+            <p>$14</p>
+        </div>
+        <hr />
+        <div>
+            <h2>total price</h2>
+            <p>$14</p>
+        </div>
+        <button class="submit">Complete order</button>
+        <div class="thank-you-message">
+            <h2>Thanks, James! Your order is on its way!</h2>
+        </div>
+    </section>
+    <div class="modal">
+        <!--Modal-->
+        <h2>Enter card details</h2>
+        <input type="text" placeholder="Enter your name" />
+        <input type="text" placeholder="Enter card number" />
+        <input type="text" placeholder="Enter CVV" />
+        <button class="submit">Pay</button>
+    </div>
+    <script src="index.js" type="module"></script>
+</body>
+
+</html>
