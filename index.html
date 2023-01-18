@@ -20,27 +20,37 @@
     <section class="menu-items" id="menu-items">
         <!-- menu item -->
     </section>
-    <section class="order-details">
+    <section class="order-details container">
         <!-- order details -->
         <h2 class="details-title">Your order</h2>
-        <div class="order-details-container">
-            <div>
-                <h2>Title</h2>
-                <button>remove</button>
-                <p>$14</p>
+        <div class="orders-container">
+            <div class="order">
+                <h2 class="order-title">Title</h2>
+                <button class="order-remove-btn">remove</button>
+                <p class="order-price">$14</p>
+            </div>
+            <div class="order">
+                <h2 class="order-title">Title</h2>
+                <button class="order-remove-btn">remove</button>
+                <p class="order-price">$14</p>
+            </div>
+            <div class="order">
+                <h2 class="order-title">Title</h2>
+                <button class="order-remove-btn">remove</button>
+                <p class="order-price">$14</p>
             </div>
         </div>
-        <hr />
-        <div>
-            <h2>total price</h2>
-            <p>$14</p>
+        <hr class="order-hr" />
+        <div class="order">
+            <h2>Total price</h2>
+            <p class="order-price">$14</p>
         </div>
-        <button class="submit">Complete order</button>
-        <div class="thank-you-message">
-            <h2>Thanks, James! Your order is on its way!</h2>
-        </div>
+        <button class="green-btn">Complete order</button>
     </section>
-    <div class="modal">
+    <div class="thank-you-message hidden">
+        <h2>Thanks, James! Your order is on its way!</h2>
+    </div>
+    <div class="modal hidden">
         <!--Modal-->
         <h2>Enter card details</h2>
         <input type="text" placeholder="Enter your name" />

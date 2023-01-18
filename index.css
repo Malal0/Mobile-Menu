@@ -17,6 +17,8 @@ body {
     font-family: 'Smythe', Arial;
 }
 
+/* header */
+
 .header {
     background-image: url(./images/Burger.svg);
     color: #fff;
@@ -33,6 +35,8 @@ body {
 .header h2 {
     margin-bottom: 30px;
 }
+
+/* menu items */
 
 .menu-item {
     display: flex;
@@ -71,8 +75,47 @@ body {
     margin-left: auto;
 }
 
+/* order details */
+.order-details {
+    border: 1px dotted green;
+    display: flex;
+    flex-direction: column;
+}
 
-/* special classes */
+.details-title {
+    text-align: center;
+    padding-bottom: 44px;
+}
+
+.orders-container {
+    /* display: flex; */
+}
+
+.order {
+    display: flex;
+    align-items: center;
+}
+
+.order-remove-btn {
+    background-color: transparent;
+    border: 1px solid yellowgreen;
+    border: none;
+    color: #bbb;
+    margin-left: 8px;
+    cursor: pointer;
+    padding-block: 7px;
+}
+
+.order-remove-btn:hover {
+    color: #a1a1a1;
+}
+
+.order-price {
+    margin-left: auto;
+    margin-block: 1em;
+}
+
+/* utlility classes */
 
 .container {
     width: calc(100% - 92px);
@@ -81,4 +124,19 @@ body {
 
 .hidden {
     display: none;
+}
+
+.green-btn {
+    background-color: #16db99;
+    border: 1px solid #16db99;
+    color: #fff;
+    font-weight: bold;
+    padding-block: 1.5em;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.green-btn:hover {
+    background-color: hsl(160, 82%, 50%);
+    border: 1px solid hsl(160, 82%, 50%);
 }
