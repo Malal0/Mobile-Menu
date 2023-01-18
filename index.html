@@ -20,7 +20,7 @@
     <section class="menu-items" id="menu-items">
         <!-- menu item -->
     </section>
-    <section class="order-details container hidden">
+    <section class="order-details container">
         <!-- order details -->
         <h2 class="details-title">Your order</h2>
         <div>
@@ -34,25 +34,25 @@
                     <h2 class="order-title">Title</h2>
                     <button class="order-remove-btn">remove</button>
                     <p class="order-price">$14</p>
-
-                </div>
-                <hr class="order-hr" />
-                <div class="order">
-                    <h2>Total price</h2>
-                    <p class="order-price">$14</p>
                 </div>
             </div>
-            <button class="green-btn">Complete order</button>
+            <hr class="order-hr" />
+            <div class="order">
+                <h2>Total price</h2>
+                <p class="order-price">$14</p>
+            </div>
+        </div>
+        <button class="green-btn">Complete order</button>
     </section>
-    <div class="thank-you-message">
-        <p>Thanks, James! Your order is on its way!</p>
+    <div class="thank-you-message hidden">
+        <h2>Thanks, James! Your order is on its way!</h2>
     </div>
     <div class="modal hidden">
         <!--Modal-->
         <h2>Enter card details</h2>
-        <input type="text" placeholder="Enter your name" />
-        <input type="text" placeholder="Enter card number" />
-        <input type="text" placeholder="Enter CVV" />
+        <input class="modal-input" type="text" placeholder="Enter your name" />
+        <input class="modal-input" type="text" placeholder="Enter card number" />
+        <input class="modal-input" type="text" placeholder="Enter CVV" />
         <button class="green-btn">Pay</button>
     </div>
     <script src="index.js" type="module"></script>

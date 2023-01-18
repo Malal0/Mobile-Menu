@@ -77,7 +77,6 @@ body {
 
 /* order details */
 .order-details {
-    /* border: 1px dotted green; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -87,10 +86,6 @@ body {
 
 .details-title {
     text-align: center;
-}
-
-.orders-container {
-    /* margin-block: 1em; */
 }
 
 .order-hr {
@@ -129,6 +124,30 @@ body {
     width: calc(100% - 92px);
     margin: 2em auto;
     padding: 52px 60px;
+}
+
+.modal {
+    background-color: #fff;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+    padding: 23px;
+    min-width: calc(100% - 76px);
+    max-width: 380px;
+    height: 450px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto auto;
+    box-shadow: 5.19px 5.19px 255px #00000080;
+}
+
+.modal-input {
+    padding: 17px 27px;
 }
 
 /* utlility classes */
