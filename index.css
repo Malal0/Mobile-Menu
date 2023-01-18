@@ -82,6 +82,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     gap: 32px;
+    padding-block: 2.5em;
 }
 
 .details-title {
@@ -89,8 +90,11 @@ body {
 }
 
 .orders-container {
-    /* display: flex;
-    flex-direction: column; */
+    /* margin-block: 1em; */
+}
+
+.order-hr {
+    margin-top: 1em;
 }
 
 .order {
@@ -115,6 +119,16 @@ body {
 .order-price {
     margin-left: auto;
     margin-block: 1em;
+}
+
+.thank-you-message {
+    font-size: 32px;
+    color: #065f46;
+    text-align: center;
+    background-color: #ecfdf5;
+    width: calc(100% - 92px);
+    margin: 2em auto;
+    padding: 52px 60px;
 }
 
 /* utlility classes */
