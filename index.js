@@ -2,6 +2,8 @@ import { foodData } from '/data.js'
 console.log(foodData); // delete soon
 const menuitemsContainer = document.querySelector('#menu-items');
 
+const menuOrders = [];
+
 menuitemsContainer.innerHTML = foodData.map(food => `
 <div class='menu-item container'>
 <p class="item-emoji">${food.emoji}</p>
@@ -24,23 +26,18 @@ addFoodBtns.forEach(btn => {
 function addFood(e) {
     // console.log(e.target.dataset.id)
     const item = foodData.filter(food => food.emoji === e.target.dataset.id)[0];
-    ordersContainer.innerHTML += `
+    menuOrders.push(item);
+    console.log(menuOrders)
+    renderOrders();
+}
+
+function renderOrders() {
+    ordersContainer.innerHTML = menuOrders.map(item =>
+        `
         <div class="order">
             <h2 class="order-title">${item.title}</h2>
             <button class="order-remove-btn">remove</button>
             <p class="order-price">$${item.price}</p>
         </div>
-    `;
+    `).join(' ');
 }
-
-function renderOrders() {
-    return
-}
-
-/*
-    <div class="order">
-        <h2 class="order-title">Title</h2>
-        <button class="order-remove-btn">remove</button>
-        <p class="order-price">$14</p>
-    </div>
-*/
