@@ -23,7 +23,6 @@ const orderDetails = document.querySelector('#order-details');
 document.addEventListener('click', documentClick);
 
 function documentClick(e) {
-    console.log(e.target)
     if (e.target.dataset.action) {
         handleIncrementBtn(e)
     }
@@ -36,9 +35,9 @@ function handleIncrementBtn(e) {
     } else if (action === 'remove') {
         subtractFood(e)
     }
+
     menuOrders.length ? orderDetails.classList.remove('hidden') : orderDetails.classList.add('hidden');
     renderOrders();
-    console.log(orderDetails.classList)
 }
 
 function addFood(e) {
@@ -49,7 +48,6 @@ function addFood(e) {
 function subtractFood(e) {
     const item = foodData.filter(food => food.emoji === e.target.dataset.id)[0];
     menuOrders.splice(menuOrders.indexOf(item), 1);
-    console.log(menuOrders);
 }
 
 function renderOrders() {
