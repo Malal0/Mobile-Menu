@@ -9,12 +9,12 @@ export const foodData = [
         emoji: '🍔',
         title: 'Hamburger',
         ingredients: ['beef', 'cheese', 'lettuce'],
-        price: 14,
+        price: 12,
     },
     {
         emoji: '🍺',
-        title: 'Pizza',
+        title: 'Beer',
         ingredients: ['grain', 'hops', 'yeast', 'water'],
-        price: 14,
+        price: 16,
     },
 ]
