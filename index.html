@@ -20,7 +20,7 @@
     <section class="menu-items" id="menu-items">
         <!-- menu item -->
     </section>
-    <section class="order-details container">
+    <section class="order-details container hidden" id="order-details">
         <!-- order details -->
         <h2 class="details-title">Your order</h2>
         <div>
@@ -30,7 +30,7 @@
             <hr class="order-hr" />
             <div class="order">
                 <h2>Total price</h2>
-                <p class="order-price">$0</p>
+                <p class="order-price">$<span id="order-total-price">0</span></p>
             </div>
         </div>
         <button class="green-btn">Complete order</button>
