@@ -3,8 +3,8 @@ import { foodData } from '/data.js'
 
 const menuitemsContainer = document.querySelector('#menu-items');
 
-// const menuOrders = []; og code
-let menuOrders = [];
+const menuOrders = []; //log code
+// let menuOrders = [];
 
 const ordersContainer = document.querySelector('#orders-container');
 const orderTotalPriceEl = document.querySelector('#order-total-price');
@@ -52,6 +52,7 @@ function handleIncrementBtn(e) {
 
     menuOrders.length ? orderDetails.classList.remove('hidden') : orderDetails.classList.add('hidden');
     renderOrders();
+    console.log(menuOrders)
 }
 
 function addFood(e) {
@@ -59,7 +60,8 @@ function addFood(e) {
 
     // add object only if the menuOrders array doesn't include or contain the object
     if (!menuOrders.includes(item)) {
-        menuOrders.push(item);
+        menuOrders.unshift(item);
+        item.quantity++
     } else {
         // increase the the object quantity by 1
         menuOrders.map(order => {
@@ -75,16 +77,18 @@ function addFood(e) {
 }
 
 function subtractFood(e) {
-    menuOrders.map(order => {
-        if (order.emoji === e.target.dataset.id) {
-            order.quantity--
+    const item = menuOrders.filter(food => food.emoji === e.target.dataset.id)[0];
+    if (item) {
+        item.quantity--;
+        if (item.quantity === 0) {
+            removeOrder(e)
         }
-    })
+    }
 }
 
 function removeOrder(e) {
     const item = menuOrders.filter(food => food.emoji === e.target.dataset.id)[0];
-
+    item.quantity = 0;
     menuOrders.splice(menuOrders.indexOf(item), 1);
 }
 
@@ -95,7 +99,7 @@ function renderOrders() {
             <h2 class="order-title">${item.title}</h2>
             <p>x ${item.quantity}</p>
             <button class="order-remove-btn" data-id=${item.emoji} data-action="remove">remove</button>
-            <p class="order-price">$${item.price}</p>
+            <p class="order-price">$${item.price * item.quantity}</p>
         </div>
     `).join(' ');
 
