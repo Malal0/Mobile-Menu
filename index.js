@@ -108,7 +108,7 @@ function renderOrders() {
 
 function getTotalPrice() {
     return menuOrders.reduce((total, item) =>
-        total + item.price
+        total + (item.price * item.quantity)
         , 0);
 }
 
