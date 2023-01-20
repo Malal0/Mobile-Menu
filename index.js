@@ -1,28 +1,32 @@
 import { foodData } from '/data.js'
-import { v4 as uuid } from 'https://jspm.dev/uuid';
+// import { v4 as uuid } from 'https://jspm.dev/uuid';
 
 const menuitemsContainer = document.querySelector('#menu-items');
 
 // const menuOrders = []; og code
 let menuOrders = [];
 
-menuitemsContainer.innerHTML = foodData.map(food => `
-<div class='menu-item container'>
-<p class="item-emoji">${food.emoji}</p>
-<div class="item-info">
-<h3 class="item-title">${food.title}</h3>
-<p class="item-ingredients">${food.ingredients}</p>
-<p class="item-price">$${food.price}</p>
-</div>
-<button class="increment-btn" data-id=${food.emoji} data-action='add'>+</button>
-</div>
-`).join(' ');
-
 const ordersContainer = document.querySelector('#orders-container');
 const orderTotalPriceEl = document.querySelector('#order-total-price');
 const orderDetails = document.querySelector('#order-details');
 const modal = document.querySelector('#modal');
 const thankYouMessage = document.querySelector('#thank-you-message');
+
+menuitemsContainer.innerHTML = foodData.map(food => `
+<div class='menu-item container'>
+    <p class="item-emoji">${food.emoji}</p>
+    <div class="item-info">
+        <h3 class="item-title">${food.title}</h3>
+        <p class="item-ingredients">${food.ingredients}</p>
+        <p class="item-price">$${food.price}</p>
+    </div>
+    <div class='increment-container'>
+        <button class="increment-btn" data-id=${food.emoji} data-action='subtract'>-</button>
+        <input type="number" class="increment-input"/>
+        <button class="increment-btn" data-id=${food.emoji} data-action='add'>+</button>
+    </div>
+</div>
+`).join(' ');
 
 document.addEventListener('click', documentClick);
 
@@ -40,8 +44,10 @@ function handleIncrementBtn(e) {
     const action = e.target.dataset.action;
     if (action === 'add') {
         addFood(e)
-    } else if (action === 'remove') {
+    } else if (action === 'subtract') {
         subtractFood(e)
+    } else if (action === 'remove') {
+        removeOrder(e)
     }
 
     menuOrders.length ? orderDetails.classList.remove('hidden') : orderDetails.classList.add('hidden');
@@ -50,17 +56,35 @@ function handleIncrementBtn(e) {
 
 function addFood(e) {
     const item = foodData.filter(food => food.emoji === e.target.dataset.id)[0];
-    menuOrders.push({ ...item, id: uuid() });
-    // menuOrders.push(item); og code
+
+    // add object only if the menuOrders array doesn't include or contain the object
+    if (!menuOrders.includes(item)) {
+        menuOrders.push(item);
+    } else {
+        // increase the the object quantity by 1
+        menuOrders.map(order => {
+            if (order.emoji === e.target.dataset.id) {
+                order.quantity++
+            }
+        })
+    }
+
     if (!thankYouMessage.classList.contains('hidden')) {
         thankYouMessage.classList.add('hidden');
     }
 }
 
 function subtractFood(e) {
-    // const item = foodData.filter(food => food.emoji === e.target.dataset.id)[0];
-    // menuOrders.splice(menuOrders.indexOf(item), 1); og code
-    const item = menuOrders.filter(food => food.id === e.target.dataset.id)[0];
+    menuOrders.map(order => {
+        if (order.emoji === e.target.dataset.id) {
+            order.quantity--
+        }
+    })
+}
+
+function removeOrder(e) {
+    const item = menuOrders.filter(food => food.emoji === e.target.dataset.id)[0];
+
     menuOrders.splice(menuOrders.indexOf(item), 1);
 }
 
@@ -69,7 +93,8 @@ function renderOrders() {
         `
         <div class="order">
             <h2 class="order-title">${item.title}</h2>
-            <button class="order-remove-btn" data-id=${item.id} data-action="remove">remove</button>
+            <p>x ${item.quantity}</p>
+            <button class="order-remove-btn" data-id=${item.emoji} data-action="remove">remove</button>
             <p class="order-price">$${item.price}</p>
         </div>
     `).join(' ');
