@@ -3,7 +3,8 @@ import { v4 as uuid } from 'https://jspm.dev/uuid';
 
 const menuitemsContainer = document.querySelector('#menu-items');
 
-const menuOrders = [];
+// const menuOrders = []; og code
+let menuOrders = [];
 
 menuitemsContainer.innerHTML = foodData.map(food => `
 <div class='menu-item container'>
@@ -20,6 +21,8 @@ menuitemsContainer.innerHTML = foodData.map(food => `
 const ordersContainer = document.querySelector('#orders-container');
 const orderTotalPriceEl = document.querySelector('#order-total-price');
 const orderDetails = document.querySelector('#order-details');
+const modal = document.querySelector('#modal');
+const thankYouMessage = document.querySelector('#thank-you-message');
 
 document.addEventListener('click', documentClick);
 
@@ -49,6 +52,9 @@ function addFood(e) {
     const item = foodData.filter(food => food.emoji === e.target.dataset.id)[0];
     menuOrders.push({ ...item, id: uuid() });
     // menuOrders.push(item); og code
+    if (!thankYouMessage.classList.contains('hidden')) {
+        thankYouMessage.classList.add('hidden');
+    }
 }
 
 function subtractFood(e) {
@@ -78,11 +84,14 @@ function getTotalPrice() {
 }
 
 function handleCompleteOrder() {
-    document.querySelector('#modal').classList.remove('hidden')
+    modal.classList.remove('hidden')
 }
 
 function handlePay() {
-    document.querySelector('#modal').classList.add('hidden');
-    document.querySelector('#order-details').classList.add('hidden');
-    document.querySelector('#thank-you-message').classList.remove('hidden');
+    modal.classList.add('hidden');
+    orderDetails.classList.add('hidden');
+    thankYouMessage.classList.remove('hidden');
+
+    menuOrders = [];
+    renderOrders();
 }
