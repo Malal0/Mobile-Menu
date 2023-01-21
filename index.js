@@ -1,10 +1,8 @@
 import { foodData } from '/data.js'
-// import { v4 as uuid } from 'https://jspm.dev/uuid';
 
 const menuitemsContainer = document.querySelector('#menu-items');
 
-const menuOrders = []; //log code
-// let menuOrders = [];
+const menuOrders = [];
 
 const ordersContainer = document.querySelector('#orders-container');
 const orderTotalPriceEl = document.querySelector('#order-total-price');
@@ -22,7 +20,7 @@ menuitemsContainer.innerHTML = foodData.map(food => `
     </div>
     <div class='increment-container'>
         <button class="increment-btn" data-id=${food.emoji} data-action='subtract'>-</button>
-        <input type="number" class="increment-input"/>
+        <input type="number" class="increment-input" data-id=${food.emoji} />
         <button class="increment-btn" data-id=${food.emoji} data-action='add'>+</button>
     </div>
 </div>
@@ -52,7 +50,7 @@ function handleIncrementBtn(e) {
 
     menuOrders.length ? orderDetails.classList.remove('hidden') : orderDetails.classList.add('hidden');
     renderOrders();
-    console.log(menuOrders)
+    // renderInputs();
 }
 
 function addFood(e) {
@@ -104,6 +102,13 @@ function renderOrders() {
     `).join(' ');
 
     orderTotalPriceEl.innerHTML = getTotalPrice();
+}
+
+function renderInputs() {
+    /*
+    for every input if the input dataset id === menuOrders order emoji
+    set the input value to the order quantity
+    */
 }
 
 function getTotalPrice() {
