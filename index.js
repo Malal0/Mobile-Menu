@@ -20,13 +20,16 @@ menuitemsContainer.innerHTML = foodData.map(food => `
     </div>
     <div class='increment-container'>
         <button class="increment-btn" data-id=${food.emoji} data-action='subtract'>-</button>
-        <input type="number" class="increment-input" id="${food.title}-input" placeholder='0' />
+        <input type="number" class="increment-input" id="${food.title}-input" data-action="input"  data-id=${food.emoji} placeholder='0' />
         <button class="increment-btn" data-id=${food.emoji} data-action='add'>+</button>
     </div>
 </div>
 `).join(' ');
 
 document.addEventListener('click', documentClick);
+
+const allInputs = document.querySelectorAll('input[type="number"]');
+allInputs.forEach(input => input.addEventListener('input', changeObjQuantity))
 
 function documentClick(e) {
     if (e.target.dataset.action) {
@@ -50,7 +53,6 @@ function handleIncrementBtn(e) {
 
     menuOrders.length ? orderDetails.classList.remove('hidden') : orderDetails.classList.add('hidden');
     renderOrders();
-    // renderInputs();
 }
 
 function addFood(e) {
@@ -94,6 +96,25 @@ function removeOrder(e) {
     menuOrders.splice(menuOrders.indexOf(item), 1);
 }
 
+function changeObjQuantity(e) {
+    const item = menuOrders.filter(food => food.emoji === e.target.dataset.id)[0];
+    if (item) {
+        console.log(item);
+        item.quantity = e.target.value
+        if (e.target.value == 0) {
+            e.target.value = ''
+            removeOrder(e)
+        }
+    }
+
+    menuOrders.length ? orderDetails.classList.remove('hidden') : orderDetails.classList.add('hidden');
+    renderOrders();
+}
+
+function changeInputValue(obj) {
+    document.querySelector(`#${obj.title}-input`).value = obj.quantity
+}
+
 function renderOrders() {
     ordersContainer.innerHTML = menuOrders.map(item =>
         `
@@ -106,16 +127,6 @@ function renderOrders() {
     `).join(' ');
 
     orderTotalPriceEl.innerHTML = getTotalPrice();
-}
-
-function renderInputs() {
-    const pizzaInput = document.querySelector('#Pizza-input');
-    const hamburgerInput = document.querySelector('#Hamburger-input');
-    const beerInput = document.querySelector('#Beer-input');
-
-    console.log(pizzaInput)
-    console.log(hamburgerInput)
-    console.log(beerInput)
 }
 
 function getTotalPrice() {
@@ -135,8 +146,4 @@ function handlePay() {
 
     menuOrders = [];
     renderOrders();
-}
-
-function changeInputValue(obj) {
-    document.querySelector(`#${obj.title}-input`).value = obj.quantity
 }
