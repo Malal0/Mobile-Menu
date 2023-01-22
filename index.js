@@ -20,7 +20,7 @@ menuitemsContainer.innerHTML = foodData.map(food => `
     </div>
     <div class='increment-container'>
         <button class="increment-btn" data-id=${food.emoji} data-action='subtract'>-</button>
-        <input type="number" class="increment-input" data-id=${food.emoji} />
+        <input type="number" class="increment-input" id="${food.title}-input" placeholder='0' />
         <button class="increment-btn" data-id=${food.emoji} data-action='add'>+</button>
     </div>
 </div>
@@ -60,11 +60,13 @@ function addFood(e) {
     if (!menuOrders.includes(item)) {
         menuOrders.unshift(item);
         item.quantity++
+        changeInputValue(item)
     } else {
         // increase the the object quantity by 1
         menuOrders.map(order => {
             if (order.emoji === e.target.dataset.id) {
                 order.quantity++
+                changeInputValue(order)
             }
         })
     }
@@ -82,11 +84,13 @@ function subtractFood(e) {
             removeOrder(e)
         }
     }
+    changeInputValue(item);
 }
 
 function removeOrder(e) {
     const item = menuOrders.filter(food => food.emoji === e.target.dataset.id)[0];
     item.quantity = 0;
+    changeInputValue(item);
     menuOrders.splice(menuOrders.indexOf(item), 1);
 }
 
@@ -105,10 +109,13 @@ function renderOrders() {
 }
 
 function renderInputs() {
-    /*
-    for every input if the input dataset id === menuOrders order emoji
-    set the input value to the order quantity
-    */
+    const pizzaInput = document.querySelector('#Pizza-input');
+    const hamburgerInput = document.querySelector('#Hamburger-input');
+    const beerInput = document.querySelector('#Beer-input');
+
+    console.log(pizzaInput)
+    console.log(hamburgerInput)
+    console.log(beerInput)
 }
 
 function getTotalPrice() {
@@ -128,4 +135,8 @@ function handlePay() {
 
     menuOrders = [];
     renderOrders();
+}
+
+function changeInputValue(obj) {
+    document.querySelector(`#${obj.title}-input`).value = obj.quantity
 }
