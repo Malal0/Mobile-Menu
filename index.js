@@ -97,16 +97,35 @@ function removeOrder(e) {
 }
 
 function changeObjQuantity(e) {
-    const item = menuOrders.filter(food => food.emoji === e.target.dataset.id)[0];
-    if (item) {
-        console.log(item);
-        item.quantity = e.target.value
-        if (e.target.value == 0) {
-            e.target.value = ''
-            removeOrder(e)
+    const item = foodData.filter(food => food.emoji === e.target.dataset.id)[0];
+
+    if (Number(e.target.value) > 0) {
+        if (!menuOrders.includes(item)) {
+            menuOrders.unshift(item);
+            item.quantity = e.target.value;
+        } else {
+            item.quantity = e.target.value;
         }
+    } else {
+        e.target.value = ''
+
     }
 
+    /*
+    if the e.target.value is greater than 0
+        if the item doesn't exist in the menuOrder
+            then add the item to the menuOrder array
+            then update the item.quantity to the e.target.value
+        else
+            then update the item.quantity to the e.target.value
+    else
+        then make the value of the input an empty string ""
+        if the item doesn't exist in the menuOrder
+            return
+        else
+            then the item is to be removed
+            it's quantity is set to 0
+    */
     menuOrders.length ? orderDetails.classList.remove('hidden') : orderDetails.classList.add('hidden');
     renderOrders();
 }
