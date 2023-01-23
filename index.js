@@ -1,9 +1,6 @@
 import { foodData } from '/data.js'
-
 const menuitemsContainer = document.querySelector('#menu-items');
-
 const menuOrders = [];
-
 const ordersContainer = document.querySelector('#orders-container');
 const orderTotalPriceEl = document.querySelector('#order-total-price');
 const orderDetails = document.querySelector('#order-details');
@@ -58,13 +55,11 @@ function handleIncrementBtn(e) {
 function addFood(e) {
     const item = foodData.filter(food => food.emoji === e.target.dataset.id)[0];
 
-    // add object only if the menuOrders array doesn't include or contain the object
     if (!menuOrders.includes(item)) {
         menuOrders.unshift(item);
         item.quantity++
         changeInputValue(item)
     } else {
-        // increase the the object quantity by 1
         menuOrders.map(order => {
             if (order.emoji === e.target.dataset.id) {
                 order.quantity++
@@ -92,12 +87,12 @@ function subtractFood(e) {
 function removeOrder(e) {
     const item = menuOrders.filter(food => food.emoji === e.target.dataset.id)[0];
     item.quantity = 0;
-    changeInputValue(item);
+    document.querySelector(`#${item.title}-input`).value = ''
     menuOrders.splice(menuOrders.indexOf(item), 1);
 }
 
 function changeObjQuantity(e) {
-    const item = foodData.filter(food => food.emoji === e.target.dataset.id)[0];
+    const item = getItem(e, foodData);
 
     if (Number(e.target.value) > 0) {
         if (!menuOrders.includes(item)) {
@@ -115,21 +110,6 @@ function changeObjQuantity(e) {
         }
     }
 
-    /*
-    if the e.target.value is greater than 0
-        if the item doesn't exist in the menuOrder
-            then add the item to the menuOrder array
-            then update the item.quantity to the e.target.value
-        else
-            then update the item.quantity to the e.target.value
-    else
-        then make the value of the input an empty string ""
-        if the item doesn't exist in the menuOrder
-            return
-        else
-            then the item is to be removed
-            it's quantity is set to 0
-    */
     menuOrders.length ? orderDetails.classList.remove('hidden') : orderDetails.classList.add('hidden');
     renderOrders();
 }
@@ -169,4 +149,8 @@ function handlePay() {
 
     menuOrders = [];
     renderOrders();
+}
+
+function getItem(event, arr) {
+    return arr.filter(food => food.emoji === event.target.dataset.id)[0];
 }
