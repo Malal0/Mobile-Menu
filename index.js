@@ -108,7 +108,11 @@ function changeObjQuantity(e) {
         }
     } else {
         e.target.value = ''
+        if (menuOrders.includes(item)) {
+            menuOrders.splice(menuOrders.indexOf(item), 1);
 
+            item.quantity = 0;
+        }
     }
 
     /*
