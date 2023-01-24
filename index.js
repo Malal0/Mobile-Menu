@@ -81,6 +81,7 @@ function subtractFood(e) {
         item.quantity--;
         if (item.quantity === 0) {
             removeOrder(e)
+            document.querySelector(`#${obj.title}-input`).value = ''
         }
     }
     changeInputValue(item);
@@ -126,7 +127,7 @@ function renderOrders() {
         `
         <div class="order">
             <h2 class="order-title">${item.title}</h2>
-            <p>x ${item.quantity}</p>
+            <p class="order-quantity">x ${item.quantity}</p>
             <button class="order-remove-btn" data-id=${item.emoji} data-action="remove">remove</button>
             <p class="order-price">$${item.price * item.quantity}</p>
         </div>

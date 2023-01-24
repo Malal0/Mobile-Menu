@@ -121,6 +121,11 @@ input[type=number] {
     align-items: center;
 }
 
+.order-quantity {
+    color: #8b8b8b;
+    margin-left: .3em;
+}
+
 .order-remove-btn {
     background-color: transparent;
     border: 1px solid yellowgreen;
@@ -132,7 +137,7 @@ input[type=number] {
 }
 
 .order-remove-btn:hover {
-    color: #a1a1a1;
+    color: #8b8b8b;
 }
 
 .order-price {
