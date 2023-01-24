@@ -154,12 +154,12 @@ input[type=number] {
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     text-align: center;
-    padding: 23px;
+    padding: 29px 23px;
     min-width: calc(100% - 76px);
     max-width: 380px;
-    height: 450px;
+    height: fit-content;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -167,10 +167,29 @@ input[type=number] {
     right: 0;
     margin: auto auto;
     box-shadow: 5.19px 5.19px 255px #00000080;
+    border-radius: 4px;
+}
+
+.modal-title {
+    margin: 24px 0 46px 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .modal-input {
     padding: 17px 27px;
+    font-size: 20px;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+}
+
+.card-info .green-btn {
+    margin-top: 23px;
+    font-size: 20px;
+    padding-block: 1em;
 }
 
 /* utlility classes */

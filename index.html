@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css" />
+    <link rel="icon"
+        href="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fgoogle%2Fnoto-emoji-food-drink%2F1024%2F32382-hamburger-icon.png&f=1&nofb=1&ipt=d92ab2817095a5fecf4df39b7f478205a2132da7b7e42be0b17dd1dfaf4ad2ed&ipo=images" />
     <title>Mobile Menu</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,11 +42,15 @@
     </div>
     <div class="modal hidden" id="modal">
         <!--Modal-->
-        <h2>Enter card details</h2>
-        <input class="modal-input" type="text" placeholder="Enter your name" required />
-        <input class="modal-input" type="text" placeholder="Enter card number" required />
-        <input class="modal-input" type="text" placeholder="Enter CVV" required />
-        <button class="green-btn" id="payBtn">Pay</button>
+        <h2 class="modal-title">Enter card details</h2>
+        <form class="card-info" id="card-form">
+            <input class="modal-input" type="text" placeholder="Enter your name" id="cardName" name="cardName"
+                required />
+            <input class="modal-input" type="text" placeholder="Enter card number" id="cardNumber" name="userCardNumber"
+                required />
+            <input class="modal-input" type="text" placeholder="Enter CVV" id="cardCVV" name="cardCVV" required />
+            <button class="green-btn" type="submit">Pay</button>
+        </form>
     </div>
     <script src="index.js" type="module"></script>
 </body>

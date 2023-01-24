@@ -5,6 +5,7 @@ const ordersContainer = document.querySelector('#orders-container');
 const orderTotalPriceEl = document.querySelector('#order-total-price');
 const orderDetails = document.querySelector('#order-details');
 const modal = document.querySelector('#modal');
+const cardForm = document.querySelector('#card-form')
 const thankYouMessage = document.querySelector('#thank-you-message');
 
 menuitemsContainer.innerHTML = foodData.map(food => `
@@ -24,6 +25,8 @@ menuitemsContainer.innerHTML = foodData.map(food => `
 `).join(' ');
 
 document.addEventListener('click', documentClick);
+
+cardForm.addEventListener('submit', handlePay);
 
 const allInputs = document.querySelectorAll('input[type="number"]');
 allInputs.forEach(input => input.addEventListener('input', changeObjQuantity))
@@ -53,8 +56,7 @@ function handleIncrementBtn(e) {
 }
 
 function addFood(e) {
-    const item = foodData.filter(food => food.emoji === e.target.dataset.id)[0];
-
+    const item = getItem(e, foodData);
     if (!menuOrders.includes(item)) {
         menuOrders.unshift(item);
         item.quantity++
@@ -74,7 +76,7 @@ function addFood(e) {
 }
 
 function subtractFood(e) {
-    const item = menuOrders.filter(food => food.emoji === e.target.dataset.id)[0];
+    const item = getItem(e, menuOrders);
     if (item) {
         item.quantity--;
         if (item.quantity === 0) {
@@ -85,7 +87,7 @@ function subtractFood(e) {
 }
 
 function removeOrder(e) {
-    const item = menuOrders.filter(food => food.emoji === e.target.dataset.id)[0];
+    const item = getItem(e, menuOrders);
     item.quantity = 0;
     document.querySelector(`#${item.title}-input`).value = ''
     menuOrders.splice(menuOrders.indexOf(item), 1);
@@ -93,7 +95,6 @@ function removeOrder(e) {
 
 function changeObjQuantity(e) {
     const item = getItem(e, foodData);
-
     if (Number(e.target.value) > 0) {
         if (!menuOrders.includes(item)) {
             menuOrders.unshift(item);
@@ -105,12 +106,14 @@ function changeObjQuantity(e) {
         e.target.value = ''
         if (menuOrders.includes(item)) {
             menuOrders.splice(menuOrders.indexOf(item), 1);
-
             item.quantity = 0;
         }
     }
 
     menuOrders.length ? orderDetails.classList.remove('hidden') : orderDetails.classList.add('hidden');
+    if (!thankYouMessage.classList.contains('hidden')) {
+        thankYouMessage.classList.add('hidden');
+    }
     renderOrders();
 }
 
@@ -142,13 +145,16 @@ function handleCompleteOrder() {
     modal.classList.remove('hidden')
 }
 
-function handlePay() {
+function handlePay(e) {
+    e.preventDefault();
     modal.classList.add('hidden');
     orderDetails.classList.add('hidden');
     thankYouMessage.classList.remove('hidden');
 
-    menuOrders = [];
-    renderOrders();
+    //reset section
+    document.querySelectorAll('input').forEach(input => input.value = '');
+    menuOrders.map(order => order.quantity = 0);
+    menuOrders.splice(0);
 }
 
 function getItem(event, arr) {
