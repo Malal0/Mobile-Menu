@@ -147,11 +147,17 @@ function handleCompleteOrder() {
 
 function handlePay(e) {
     e.preventDefault();
+
+    const cardFormData = new FormData(cardForm);
+    const fullName = cardFormData.get('cardName')
+
+    document.querySelector('#first-name').innerText = fullName.split(' ')[0];
+
     modal.classList.add('hidden');
     orderDetails.classList.add('hidden');
     thankYouMessage.classList.remove('hidden');
 
-    //reset section
+    //reset
     document.querySelectorAll('input').forEach(input => input.value = '');
     menuOrders.map(order => order.quantity = 0);
     menuOrders.splice(0);
